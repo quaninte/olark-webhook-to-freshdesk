@@ -5,6 +5,7 @@ use Freshdesk\Config\Connection,
     Freshdesk\Ticket,
     Freshdesk\Model\Ticket as TicketM;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -45,10 +46,9 @@ $app->get('/', function () use ($app) {
     return 'Setup olark webhook to this url';
 });
 
-$app->post('/', function () use ($app) {
+$app->post('/', function (Request $request) use ($app) {
     // Handle Olark webhook
-    $content = file_get_contents("php://input");
-    $data = json_decode($content, true);
+    $data = json_decode($request->request->get('data'), true);
 
     // Stop if visitor email not found
     if (!isset($data['visitor']['emailAddress'])) {
