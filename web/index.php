@@ -41,7 +41,7 @@ function buildMessage($message, $data) {
     return str_replace($search, $replace, $message);
 }
 
-$app->post('/', function () use ($app) {
+$app->get('/', function () use ($app) {
     return 'Setup olark webhook to this url';
 });
 
