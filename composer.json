@@ -1,0 +1,7 @@
+{
+    "require": {
+        "silex/silex": "~1.3",
+        "evodelavega/freshdesk-rest": "dev-master",
+        "igorw/config-service-provider": "^1.2"
+    }
+}
