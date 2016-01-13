@@ -42,6 +42,10 @@ function buildMessage($message, $data) {
 }
 
 $app->post('/', function () use ($app) {
+    return 'Setup olark webhook to this url';
+});
+
+$app->post('/', function () use ($app) {
     // Handle Olark webhook
     $content = file_get_contents("php://input");
     $data = json_decode($content, true);
