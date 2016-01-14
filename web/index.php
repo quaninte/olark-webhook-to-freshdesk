@@ -29,6 +29,8 @@ function buildMessage($message, $data) {
             ? $data['visitor']['conversationBeginPage'] : '',
         'visitor_phoneNumber' => isset($data['visitor']['phoneNumber'])
             ? $data['visitor']['phoneNumber'] : '',
+        'visitor_shopDomain' => isset($data['visitor']['customFields']['shopDomain'])
+            ? $data['visitor']['customFields']['shopDomain'] : '',
     ];
 
     $search = [];
