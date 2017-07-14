@@ -62,7 +62,7 @@ $app->post('/', function (Request $request) use ($app) {
 
     // Build conversion_messages
     $conversionMessages = '';
-    $offline = false;
+    $haveMessageToVisitor = false;
 
     // If visitor full name not defined
     if (!isset($data['visitor']['fullName'])) {
@@ -70,8 +70,9 @@ $app->post('/', function (Request $request) use ($app) {
     }
 
     foreach ($data['items'] as $item) {
-        if ($item['kind'] == 'OfflineMessage') {
-            $offline = true;
+        // Mark message to visitor true
+        if ($item['kind'] == 'MessageToVisitor') {
+            $haveMessageToVisitor = true;
         }
 
         // If nickname not provided
@@ -91,8 +92,8 @@ $app->post('/', function (Request $request) use ($app) {
     }
     $data['conversionMessages'] = $conversionMessages;
 
-    // If only offline message and this is not offline
-    if ($app['offline_only'] && !$offline) {
+    // If there are message to visitor ~> don't create ticket
+    if ($haveMessageToVisitor) {
         // ~> return false
         return new JsonResponse([
             'success' => false,
