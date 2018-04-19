@@ -23,7 +23,7 @@ function buildMessage($message, $data) {
         'conversionMessages' => $data['conversionMessages'],
         'visitor_fullName' => $data['visitor']['fullName'],
         'visitor_city' => $data['visitor']['city'],
-        'visitor_region' => $data['visitor']['region'],
+        'visitor_region' => isset($data['visitor']['region']) ? $data['visitor']['region'] : '',
         'visitor_countryCode' => $data['visitor']['countryCode'],
         'visitor_conversationBeginPage' => isset($data['visitor']['conversationBeginPage'])
             ? $data['visitor']['conversationBeginPage'] : '',
